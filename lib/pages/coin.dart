@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-//import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 class Coin extends StatefulWidget {
   //const Coin({Key? key}) : super(key: key);
 
@@ -8,10 +10,7 @@ class Coin extends StatefulWidget {
 }
 
 class _CoinState extends State<Coin> {
-  List<Data> data = [
-    Data(name: 'Bitcoin', symbolCurrency: 'BTC', rank: 1, price: 32500.0),
-    Data(name: 'Ethereum', symbolCurrency: 'ETH', rank: 2, price: 2100.0)
-  ];
+  List<Data> data = [];
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,28 @@ class _CoinState extends State<Coin> {
     )).toList();
   }
 
-  void _loadCoin() async {
+  Future _loadCoin() async{
+    String url = "https://api.coincap.io/v2/assets?limit=10";
+    final response = await http.get(Uri.parse(url));
+
+    // if (response.statusCode==200){
+    //   print(response.body);
+    // }
+
+    var allData = (json.decode(response.body) as Map)['data'];
+    var dataList= <Data>[];
+    allData.forEach((val){
+      var record = Data(
+          name: val['name'],
+          symbolCurrency: val['symbol'],
+          price: double.parse(val['priceUsd']),
+          rank: int.parse(val['rank'])
+      );
+      dataList.add(record);
+    });
+    setState(() {
+      data = dataList;
+    });
 
   }
 }
