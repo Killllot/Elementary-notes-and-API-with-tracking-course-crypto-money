@@ -13,6 +13,13 @@ class _CoinState extends State<Coin> {
   List<Data> data = [];
 
   @override
+  void initState()
+  {
+    super.initState();
+    _loadCoin();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -47,11 +54,9 @@ class _CoinState extends State<Coin> {
   Future _loadCoin() async{
     String url = "https://api.coincap.io/v2/assets?limit=10";
     final response = await http.get(Uri.parse(url));
-
     // if (response.statusCode==200){
     //   print(response.body);
     // }
-
     var allData = (json.decode(response.body) as Map)['data'];
     var dataList= <Data>[];
     allData.forEach((val){
