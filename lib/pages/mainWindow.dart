@@ -13,7 +13,6 @@ class _mainWindowState extends State<mainWindow> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         title: Text ('Windows'),
@@ -23,14 +22,17 @@ class _mainWindowState extends State<mainWindow> {
 
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-
           ElevatedButton(onPressed: (){
             Navigator.pushNamed(context, '/Notes');
           }, child: Text ('Notes')),
 
           ElevatedButton(onPressed: (){
             Navigator.pushNamed(context, '/Coin');
-          }, child: Text('Coin TOP'))
+          }, child: Text('Coin TOP')),
+
+          ElevatedButton(onPressed: (){
+            Navigator.pushNamed(context, '/Camera');
+          }, child: Text('Camera'))
         ],
       ),
     );
