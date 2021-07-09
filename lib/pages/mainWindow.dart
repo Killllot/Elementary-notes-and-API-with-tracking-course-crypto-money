@@ -30,7 +30,11 @@ class _mainWindowState extends State<mainWindow> {
 
           ElevatedButton(onPressed: (){
             Navigator.pushNamed(context, '/Coin');
-          }, child: Text('Coin TOP'))
+          }, child: Text('Coin TOP')),
+
+          ElevatedButton(onPressed: (){
+
+          }, child: Text('Camera'))
         ],
       ),
     );
