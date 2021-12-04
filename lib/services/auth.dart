@@ -4,43 +4,39 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-class AuthService with ChangeNotifier{
+class AuthService with ChangeNotifier {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+
+
   Future signInEmailPassword(String email, String password) async {
-    try{
-      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
-      User? user = userCredential.user;
-      return user;
-    }
-    catch(e){
+    try {
+      UserCredential userCredential = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      return userCredential.user;
+    } catch (e) {
       print(e);
     }
     notifyListeners();
-
   }
+
   Future registerEmailPassword(String email, String password) async {
-    try{
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email,
-          password: password
-      );
-      User? user = userCredential.user;
+    try {
+      UserCredential userCredential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
       // return user;
       return userCredential.user;
-    }
-    catch(e){
+    } catch (e) {
       print(e);
       return null;
     }
     notifyListeners();
   }
+
   Future logOut() async {
     await _firebaseAuth.signOut();
   }
-  Stream<User> get user =>
-      _firebaseAuth.authStateChanges().map((event) => event);
+
+  Stream get user => _firebaseAuth.authStateChanges().map((event) => event);
 }

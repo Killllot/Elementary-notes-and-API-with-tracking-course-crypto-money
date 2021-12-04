@@ -12,20 +12,22 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(StreamProvider<User>.value  (
-    value: AuthService().currentUser,
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthService>.value(value: AuthService()),
+      StreamProvider.value(value: AuthService().user, initialData: null)
+    ],
     child: MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.indigoAccent,
       ),
       initialRoute: '/',
       routes: {
-        '/':(context)=>login(),
-        '/Notes':(context)=>Notes(),
-        '/Coin':(context)=>Coin(),
-        '/login':(context)=>mainWindow(),
+        '/': (context) => login(),
+        '/Notes': (context) => Notes(),
+        '/Coin': (context) => Coin(),
+        '/login': (context) => mainWindow(),
       },
     ),
   ));
 }
-
