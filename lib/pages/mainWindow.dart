@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 class mainWindow extends StatefulWidget {
   const mainWindow({Key? key}) : super(key: key);
@@ -9,6 +12,15 @@ class mainWindow extends StatefulWidget {
 }
 
 class _mainWindowState extends State<mainWindow> {
+  void initFirebase() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
+  @override
+  void initState() {
+    super.initState();
+    initFirebase();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +41,9 @@ class _mainWindowState extends State<mainWindow> {
           ElevatedButton(onPressed: (){
             Navigator.pushNamed(context, '/Coin');
           }, child: Text('Coin TOP')),
-
           ElevatedButton(onPressed: (){
-            Navigator.pushNamed(context, '/Camera');
-          }, child: Text('Camera'))
+            Navigator.pushNamed(context, '/login');
+          }, child: Text('login'))
         ],
       ),
     );
