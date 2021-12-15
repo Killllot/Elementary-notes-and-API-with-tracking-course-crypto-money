@@ -24,9 +24,9 @@ class _mainWindowState extends State<mainWindow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blue,
         title: Text ('Windows'),
         centerTitle: true,
       ),

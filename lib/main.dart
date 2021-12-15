@@ -20,7 +20,7 @@ void main() async {
     ],
     child: MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.black54,
+        primaryColor: Colors.blue,
       ),
       initialRoute: '/',
       routes: {

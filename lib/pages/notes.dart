@@ -30,7 +30,7 @@ class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Заметки'),
         centerTitle: true,
@@ -49,8 +49,9 @@ class _NotesState extends State<Notes> {
                    child: Card(
                      child: ListTile(
                        title: Text(shapshot.data!.docs[index].get('data')),
+                       tileColor: Color.fromARGB(20, 0, 0, 255),
                        trailing: IconButton(
-                         icon: Icon(Icons.delete, color: Colors.grey,),
+                         icon: Icon(Icons.delete, color: Colors.blue,),
                          onPressed: () {
                            FirebaseFirestore.instance.collection('data')
                                .doc(shapshot.data!.docs[index].id)
@@ -68,7 +69,7 @@ class _NotesState extends State<Notes> {
          }
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey,
+        backgroundColor: Color.fromARGB(20, 0, 0, 255),
         onPressed: (){
           showDialog(context: context, builder: (BuildContext context){
 
