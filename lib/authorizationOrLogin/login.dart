@@ -44,8 +44,7 @@ class _loginState extends State<login> {
       );
     }
 
-    Widget _input(Icon icon, String text, TextEditingController controller,
-        bool flagVisibilityContent) {
+    Widget _input(Icon icon, String text, TextEditingController controller, bool flagVisibilityContent) {
       return Container(
         padding: EdgeInsets.only(left: 20, right: 20),
         child: TextField(
@@ -128,8 +127,7 @@ class _loginState extends State<login> {
         return;
       }
 
-      Future user =
-          _authService.signInEmailPassword(_email.trim(), _password.trim());
+      Future user =  _authService.signInEmailPassword(_email.trim(), _password.trim());
       if (user == null) {
         Fluttertoast.showToast(
             msg: "Can't SigIn you!Please chek your email/password",
@@ -140,6 +138,7 @@ class _loginState extends State<login> {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
+        Navigator.pushNamed(context, '/Main');
         _emailController.clear();
         _passwordController.clear();
       }
@@ -153,8 +152,7 @@ class _loginState extends State<login> {
         return;
       }
 
-      Future user =
-          _authService.registerEmailPassword(_email.trim(), _password.trim());
+      Future user = _authService.registerEmailPassword(_email.trim(), _password.trim());
       if (user == null) {
         Fluttertoast.showToast(
             msg: "Can't SigIn you!Please chek your email/password",
@@ -165,6 +163,7 @@ class _loginState extends State<login> {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
+        Navigator.pushNamed(context, '/Main');
         _emailController.clear();
         _passwordController.clear();
       }

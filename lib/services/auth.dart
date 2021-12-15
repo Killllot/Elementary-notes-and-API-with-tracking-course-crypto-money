@@ -38,5 +38,5 @@ class AuthService with ChangeNotifier {
     await _firebaseAuth.signOut();
   }
 
-  Stream get user => _firebaseAuth.authStateChanges().map((event) => event);
+  Stream get currentUser => _firebaseAuth.authStateChanges().map((event) => event);
 }

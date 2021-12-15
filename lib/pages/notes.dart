@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
@@ -11,8 +13,9 @@ class Notes extends StatefulWidget {
 
 //---------------------------------------------------------------------------------
 class _NotesState extends State<Notes> {
-  late String _userToDo;
+  late String _userData;
   List doList=[];
+
 
   void initFirebase() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +50,7 @@ class _NotesState extends State<Notes> {
                      child: ListTile(
                        title: Text(shapshot.data!.docs[index].get('data')),
                        trailing: IconButton(
-                         icon: Icon(Icons.delete, color: Colors.indigoAccent,),
+                         icon: Icon(Icons.delete, color: Colors.grey,),
                          onPressed: () {
                            FirebaseFirestore.instance.collection('data')
                                .doc(shapshot.data!.docs[index].id)
@@ -65,7 +68,7 @@ class _NotesState extends State<Notes> {
          }
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.grey,
         onPressed: (){
           showDialog(context: context, builder: (BuildContext context){
 
@@ -73,12 +76,12 @@ class _NotesState extends State<Notes> {
               title: Text ('Add element'),
               content: TextField (
                 onChanged: (String value){
-                  _userToDo=value;
+                  _userData=value;
                 },
               ),
               actions: [
                 ElevatedButton(onPressed: (){
-                  FirebaseFirestore.instance.collection('data').add({'data':_userToDo});
+                  FirebaseFirestore.instance.collection('data').add({'data':_userData});
                   Navigator.of(context).pop();
                 }, child: Text('Add',)
                 )

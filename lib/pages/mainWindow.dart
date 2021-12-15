@@ -26,7 +26,7 @@ class _mainWindowState extends State<mainWindow> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.deepPurple,
         title: Text ('Windows'),
         centerTitle: true,
       ),
@@ -41,9 +41,7 @@ class _mainWindowState extends State<mainWindow> {
           ElevatedButton(onPressed: (){
             Navigator.pushNamed(context, '/Coin');
           }, child: Text('Coin TOP')),
-          ElevatedButton(onPressed: (){
-            Navigator.pushNamed(context, '/login');
-          }, child: Text('login'))
+
         ],
       ),
     );

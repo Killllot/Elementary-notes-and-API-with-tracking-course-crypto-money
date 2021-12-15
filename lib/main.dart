@@ -15,18 +15,19 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthService>.value(value: AuthService()),
-      StreamProvider.value(value: AuthService().user, initialData: null)
+      StreamProvider.value(
+          value: AuthService().currentUser, initialData: null)
     ],
     child: MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.indigoAccent,
+        primaryColor: Colors.black54,
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => login(),
         '/Notes': (context) => Notes(),
         '/Coin': (context) => Coin(),
-        '/login': (context) => mainWindow(),
+        '/Main': (context) => mainWindow(),
       },
     ),
   ));
